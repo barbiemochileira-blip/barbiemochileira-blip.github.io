@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbie Mochileira ✈️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #080808;
+      --bg2:      #111111;
+      --bg3:      #181818;
+      --pink:     #FF1493;
+      --pink2:    #FF69B4;
+      --pink-dim: rgba(255,20,147,0.15);
+      --gold:     #C9A227;
+      --gold2:    #F0D060;
+      --white:    #FFFFFF;
+      --gray:     #AAAAAA;
+      --light:    #EEEEEE;
+      --font-title: 'Playfair Display', serif;
+      --font-body:  'Nunito', sans-serif;
+      --glow: 0 0 18px rgba(255,20,147,0.55), 0 0 40px rgba(255,20,147,0.22);
+      --glow-soft: 0 0 10px rgba(255,20,147,0.35);
+      --radius: 16px;
+      --border: 1px solid rgba(255,20,147,0.25);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--light);
+      line-height: 1.7;
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 3px; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(8,8,8,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,20,147,0.3);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 52px; height: 68px;
+    }
+    .nav-logo {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      color: var(--white);
+      text-decoration: none;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .nav-logo .logo-barbie { color: var(--pink); text-shadow: var(--glow-soft); }
+    .nav-logo .logo-mochi { color: var(--gold); }
+    .nav-links { display: flex; gap: 34px; list-style: none; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      transition: color 0.2s, text-shadow 0.2s;
+    }
+    .nav-links a:hover { color: var(--pink); text-shadow: var(--glow-soft); }
+    .nav-cta {
+      background: var(--pink);
+      color: #fff !important;
+      padding: 8px 22px;
+      border-radius: 50px;
+      transition: box-shadow 0.2s, transform 0.2s !important;
+      text-shadow: none !important;
+    }
+    .nav-cta:hover { box-shadow: var(--glow); transform: translateY(-1px); color: #fff !important; }
+
+    /* ===== HERO ===== */
+    #hero {
+      margin-top: 68px;
+      min-height: 96vh;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,20,147,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 10% 80%, rgba(201,162,39,0.08) 0%, transparent 50%),
+                  var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+      padding: 60px 24px;
+    }
+    .hero-grid-lines {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,20,147,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,20,147,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 720px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,20,147,0.5);
+      color: var(--pink2);
+      border-radius: 50px;
+      padding: 7px 22px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      background: rgba(255,20,147,0.07);
+    }
+    .hero-badge::before { content: '✈'; font-size: 1rem; }
+    .hero-content h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-content h1 .neon {
+      color: var(--pink);
+      text-shadow: var(--glow);
+      font-style: italic;
+    }
+    .hero-content h1 .gold { color: var(--gold); }
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+    .hero-content p {
+      font-size: 1.08rem;
+      color: var(--gray);
+      max-width: 540px;
+      margin: 0 auto 38px;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-neon {
+      background: var(--pink);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.97rem;
+      text-decoration: none;
+      box-shadow: var(--glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-neon:hover { transform: translateY(-3px); box-shadow: 0 0 28px rgba(255,20,147,0.7); }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      padding: 13px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.97rem;
+      text-decoration: none;
+      border: 1px solid var(--gold);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .btn-outline:hover { background: rgba(201,162,39,0.1); box-shadow: 0 0 14px rgba(201,162,39,0.3); }
+    .hero-stats {
+      display: flex; gap: 48px; justify-content: center;
+      margin-top: 64px; flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--font-title);
+      font-size: 2.4rem;
+      color: var(--pink);
+      text-shadow: var(--glow-soft);
+      font-weight: 700;
+    }
+    .stat-label { font-size: 0.82rem; color: var(--gray); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+    .stat-divider { width: 1px; background: rgba(255,255,255,0.08); }
+
+    /* ===== SECTION COMMONS ===== */
+    section { padding: 90px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 12px;
+    }
+    .section-eyebrow-line { flex: 0 0 30px; height: 2px; background: var(--pink); box-shadow: var(--glow-soft); }
+    .section-eyebrow-text {
+      color: var(--pink);
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(1.9rem, 3.5vw, 2.9rem);
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .section-title .gold { color: var(--gold); }
+    .section-title .pink { color: var(--pink); text-shadow: var(--glow-soft); font-style: italic; }
+    .section-sub { color: var(--gray); font-size: 1rem; max-width: 540px; margin-bottom: 52px; }
+
+    /* ===== PILARES / CONTEÚDO ===== */
+    #pilares { background: var(--bg2); }
+    .pilares-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 20px;
+    }
+    .pilar {
+      background: var(--bg3);
+      border: var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .pilar:hover {
+      border-color: var(--pink);
+      box-shadow: var(--glow-soft);
+      transform: translateY(-4px);
+    }
+    .pilar-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .pilar-title { font-weight: 700; font-size: 0.97rem; color: var(--white); margin-bottom: 6px; }
+    .pilar-desc { font-size: 0.82rem; color: var(--gray); }
+
+    /* ===== DESTINOS ===== */
+    #destinos { background: var(--bg); }
+    .destinos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: var(--bg2);
+      border: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: var(--pink);
+      box-shadow: 0 8px 32px rgba(255,20,147,0.18);
+    }
+    .card-thumb {
+      width: 100%; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; position: relative; overflow: hidden;
+    }
+    .card-thumb-label {
+      position: absolute; bottom: 10px; left: 14px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,20,147,0.4);
+      color: var(--pink2);
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 50px;
+    }
+    .card-body { padding: 22px 24px 26px; }
+    .card-country {
+      font-size: 0.76rem; font-weight: 700;
+      color: var(--gold); letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .card-title {
+      font-family: var(--font-title);
+      font-size: 1.2rem; color: var(--white);
+      margin-bottom: 10px; line-height: 1.3;
+    }
+    .card-desc { color: var(--gray); font-size: 0.9rem; line-height: 1.6; margin-bottom: 18px; }
+    .card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 14px; font-size: 0.82rem;
+    }
+    .card-date { color: #555; }
+    .read-more {
+      color: var(--pink);
+      font-weight: 700; text-decoration: none;
+      font-size: 0.87rem;
+      transition: text-shadow 0.2s, gap 0.2s;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .card:hover .read-more { text-shadow: var(--glow-soft); }
+
+    /* ===== GALERIA ===== */
+    #galeria { background: var(--bg2); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .gal-item {
+      border-radius: 12px; overflow: hidden;
+      position: relative; cursor: pointer;
+      border: 1px solid rgba(255,20,147,0.1);
+      transition: border-color 0.25s;
+    }
+    .gal-item:hover { border-color: var(--pink); }
+    .gal-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .gal-item:nth-child(6) { grid-column: span 2; }
+    .gal-ph {
+      width: 100%; min-height: 160px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; font-size: 2.5rem;
+      transition: transform 0.3s;
+    }
+    .gal-item:nth-child(1) .gal-ph { min-height: 340px; font-size: 4rem; }
+    .gal-item:nth-child(6) .gal-ph { min-height: 180px; }
+    .gal-item:hover .gal-ph { transform: scale(1.05); }
+    .gal-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(255,20,147,0) 60%, transparent);
+      display: flex; align-items: flex-end; padding: 14px;
+      transition: background 0.25s;
+    }
+    .gal-item:hover .gal-overlay { background: linear-gradient(to top, rgba(255,20,147,0.35) 0%, transparent 60%); }
+    .gal-label {
+      color: #fff; font-weight: 700; font-size: 0.85rem;
+      opacity: 0; transform: translateY(6px);
+      transition: opacity 0.25s, transform 0.25s;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+    }
+    .gal-item:hover .gal-label { opacity: 1; transform: translateY(0); }
+
+    /* ===== SOBRE MIM ===== */
+    #sobre { background: var(--bg); }
+    .sobre-wrap {
+      display: grid; grid-template-columns: 1fr 1.2fr;
+      gap: 72px; align-items: center;
+    }
+    .sobre-img-box {
+      position: relative;
+    }
+    .sobre-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a0010 0%, #3d001f 50%, #1a0010 100%);
+      border-radius: 24px 6px 24px 6px;
+      border: 1px solid rgba(255,20,147,0.4);
+      box-shadow: 0 0 40px rgba(255,20,147,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; overflow: hidden;
+    }
+    .sobre-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .sobre-float {
+      position: absolute;
+      bottom: -18px; right: -18px;
+      background: var(--gold);
+      border-radius: 14px;
+      padding: 14px 20px;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(201,162,39,0.3);
+      color: #000;
+    }
+    .sobre-float strong { display: block; font-size: 1.6rem; font-family: var(--font-title); }
+    .sobre-float span { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; }
+    .sobre-float2 {
+      position: absolute;
+      top: -16px; left: -16px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,20,147,0.4);
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--pink2);
+      box-shadow: var(--glow-soft);
+    }
+    .sobre-quote {
+      border-left: 3px solid var(--pink);
+      padding: 14px 20px;
+      background: var(--pink-dim);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 22px;
+      font-style: italic;
+      color: var(--pink2);
+      font-weight: 600;
+      font-size: 1.02rem;
+    }
+    .sobre-text p { color: var(--gray); font-size: 0.97rem; margin-bottom: 18px; }
+    .sobre-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+    .pill {
+      background: rgba(255,20,147,0.1);
+      border: 1px solid rgba(255,20,147,0.3);
+      color: var(--pink2);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.83rem; font-weight: 600;
+    }
+    .pill.gold-pill {
+      background: rgba(201,162,39,0.1);
+      border-color: rgba(201,162,39,0.4);
+      color: var(--gold2);
+    }
+    .sobre-socials { display: flex; gap: 12px; flex-wrap: wrap; }
+    .social-link {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.87rem; font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .social-link.ig { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color: #fff; }
+    .social-link.yt { background: #ff0000; color: #fff; }
+    .social-link.tt { background: #010101; border: 1px solid rgba(255,255,255,0.2); color: #fff; }
+    .social-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+
+    /* ===== NEWSLETTER ===== */
+    #contato {
+      background: radial-gradient(ellipse at 50% 0%, rgba(255,20,147,0.15) 0%, transparent 60%), var(--bg2);
+      border-top: 1px solid rgba(255,20,147,0.2);
+    }
+    .contato-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: flex; gap: 12px; }
+    .form-input, .form-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 18px;
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      flex: 1;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: #555; }
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px rgba(255,20,147,0.1);
+    }
+    .form-textarea { resize: none; height: 110px; border-radius: 12px; }
+    .btn-send {
+      background: var(--pink);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 800;
+      font-size: 0.97rem;
+      border: none;
+      cursor: pointer;
+      align-self: flex-start;
+      box-shadow: var(--glow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-send:hover { transform: translateY(-2px); box-shadow: 0 0 28px rgba(255,20,147,0.65); }
+    .success-msg {
+      display: none;
+      background: rgba(255,20,147,0.1);
+      border: 1px solid rgba(255,20,147,0.4);
+      border-radius: 12px;
+      padding: 16px; text-align: center;
+      color: var(--pink2); font-weight: 700;
+    }
+    .contact-perks { display: flex; flex-direction: column; gap: 22px; }
+    .perk {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px; background: var(--bg3);
+      border: var(--border); border-radius: var(--radius);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .perk:hover { border-color: var(--pink); box-shadow: var(--glow-soft); }
+    .perk-icon {
+      width: 48px; height: 48px; flex-shrink: 0;
+      background: var(--pink-dim); border: 1px solid rgba(255,20,147,0.3);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .perk-title { font-weight: 700; color: var(--white); margin-bottom: 3px; }
+    .perk-desc { font-size: 0.87rem; color: var(--gray); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #000;
+      border-top: 1px solid rgba(255,20,147,0.2);
+      padding: 44px 24px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+    .footer-logo .pink { color: var(--pink); text-shadow: var(--glow-soft); }
+    .footer-logo .gold { color: var(--gold); }
+    .footer-tagline { color: var(--gray); font-size: 0.85rem; margin-bottom: 22px; }
+    .footer-nav { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 22px; }
+    .footer-nav a { color: #555; text-decoration: none; font-size: 0.87rem; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--pink); }
+    .footer-socials { display: flex; gap: 12px; justify-content: center; margin-bottom: 22px; }
+    .fsoc {
+      width: 42px; height: 42px;
+      border: 1px solid rgba(255,20,147,0.3);
+      background: rgba(255,20,147,0.06);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .fsoc:hover { background: var(--pink); border-color: var(--pink); box-shadow: var(--glow); transform: translateY(-3px); }
+    .footer-copy { font-size: 0.78rem; color: #333; }
+    .footer-copy span { color: var(--pink); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      nav { padding: 0 20px; }
+      .sobre-wrap { grid-template-columns: 1fr; gap: 48px; }
+      .contato-wrap { grid-template-columns: 1fr; gap: 44px; }
+      .gallery-grid { grid-template-columns: repeat(2,1fr); }
+      .gal-item:nth-child(1) { grid-column: span 2; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gal-item:nth-child(6) { grid-column: span 2; }
+      .form-row { flex-direction: column; }
+      .hero-stats { gap: 28px; }
+      .stat-divider { display: none; }
+      .pilares-grid { grid-template-columns: repeat(2,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="logo-barbie">Barbie</span>
+    <span class="logo-mochi">Mochileira</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#pilares">Conteúdo</a></li>
+    <li><a href="#destinos">Destinos</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#sobre">Sobre Mim</a></li>
+    <li><a href="#contato" class="nav-cta">Fala Comigo ✉️</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Blog de Viagem · Advogada & Mochileira</div>
+    <h1>
+      Viagens com<br>
+      <span class="neon">brilho</span> e
+      <span class="gold">personalidade</span>
+    </h1>
+    <p class="hero-tagline">✈️ Arrasta a rodinha e vem comigo!</p>
+    <p>Dicas reais, vlogs, looks e experiências de quem viaja com estilo — e ainda consegue conciliar com a vida de advogada. 💼</p>
+    <div class="hero-btns">
+      <a href="#destinos" class="btn-neon">Ver Destinos 🗺️</a>
+      <a href="#sobre" class="btn-outline">Quem sou eu?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">42+</div><div class="stat-label">Países</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">Continentes</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">180+</div><div class="stat-label">Vídeos</div></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><div class="stat-num">50k+</div><div class="stat-label">Seguidoras</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES DE CONTEÚDO -->
+<section id="pilares">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">O que você encontra aqui</span>
+    </div>
+    <h2 class="section-title">Meus <span class="pink">pilares</span> de conteúdo</h2>
+    <p class="section-sub">Do vlog ao look — conteúdo real de quem vive a viagem, não só posta sobre ela.</p>
+    <div class="pilares-grid">
+      <div class="pilar">
+        <div class="pilar-icon">🎥</div>
+        <div class="pilar-title">Vlogs de Viagem</div>
+        <div class="pilar-desc">Veja tudo como se estivesse lá, em tempo real.</div>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">🗺️</div>
+        <div class="pilar-title">Dicas & Roteiros</div>
+        <div class="pilar-desc">Práticas, testadas e sem enrolação.</div>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">👜</div>
+        <div class="pilar-title">Looks & Lifestyle</div>
+        <div class="pilar-desc">Mala, estilo e como arrumar tudo com brilho.</div>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">🎭</div>
+        <div class="pilar-title">Bastidores Reais</div>
+        <div class="pilar-desc">Os perrengues também aparecem por aqui!</div>
+      </div>
+      <div class="pilar">
+        <div class="pilar-icon">🏨</div>
+        <div class="pilar-title">Reviews</div>
+        <div class="pilar-desc">Hotéis, passeios e experiências — sem papas na língua.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINOS -->
+<section id="destinos">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">Posts em destaque</span>
+    </div>
+    <h2 class="section-title">Últimas <span class="gold">aventuras</span></h2>
+    <p class="section-sub">Das dunas do Maranhão às ilhas do Caribe — os destinos que já rolaram de verdade.</p>
+    <div class="destinos-grid">
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#001a2e,#005577);">
+          🏜️ <div class="card-thumb-label">🇧🇷 Maranhão</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🇧🇷 Brasil · Nordeste</div>
+          <h3 class="card-title">Lençóis Maranhenses: um paraíso dentro do Brasil</h3>
+          <p class="card-desc">Lagoas de água cristalina entre dunas brancas — parece outro planeta. Tudo sobre como chegar, onde ficar e o melhor período.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#1a0800,#4a2200);">
+          🌴 <div class="card-thumb-label">🇧🇷 Bahia</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🇧🇷 Brasil · Bahia</div>
+          <h3 class="card-title">Porto Seguro, Arraial, Trancoso e Caraiva</h3>
+          <p class="card-desc">O combo perfeito da Costa do Descobrimento! Cada vilarejo tem seu charme — qual visitar, em quanto tempo e como se locomover.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#00101a,#003050);">
+          🏖️ <div class="card-thumb-label">🇦🇼 Aruba</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🌎 Aruba · Caribe</div>
+          <h3 class="card-title">Aruba: a ilha do vento com água de piscina</h3>
+          <p class="card-desc">Eagle Beach, flamingos cor de rosa, casinos e o mar mais azul que já vi. Roteiro completo com dicas de hospedagem e gastronomia.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#000d1a,#002040);">
+          🌊 <div class="card-thumb-label">🇨🇼 Curaçao</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🌎 Curaçao · Caribe</div>
+          <h3 class="card-title">Curaçao: Caribe holandês com muita cor</h3>
+          <p class="card-desc">Casas coloridas, mergulho incrível e uma cultura única. A ilha que surpreendeu demais — dicas de praias escondidas e o que comer.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#1a0800,#503010);">
+          🏔️ <div class="card-thumb-label">🇵🇪 Peru</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🌎 Peru · América do Sul</div>
+          <h3 class="card-title">Lima e Cusco: do ceviche ao Machu Picchu</h3>
+          <p class="card-desc">Gastronomia premiada em Lima, altitude em Cusco e a magia de Machu Picchu. Roteiro de 10 dias com tudo que você precisa saber.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-thumb" style="background:linear-gradient(135deg,#0f001a,#300050);">
+          🏙️ <div class="card-thumb-label">🇧🇷 Paraná</div>
+        </div>
+        <div class="card-body">
+          <div class="card-country">🇧🇷 Brasil · Sul</div>
+          <h3 class="card-title">Curitiba além do óbvio — e San Andrés de bônus</h3>
+          <p class="card-desc">Curitiba tem muito mais que o Jardim Botânico. E San Andrés? Água sete cores e reggae no ar — o Caribe colombiano que conquista qualquer um.</p>
+          <div class="card-footer">
+            <span class="card-date">📅 2025</span>
+            <a href="#" class="read-more">Ler post →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria">
+  <div class="container">
+    <div class="section-eyebrow">
+      <div class="section-eyebrow-line"></div>
+      <span class="section-eyebrow-text">📸 Fotos das aventuras</span>
+    </div>
+    <h2 class="section-title">Galeria de <span class="pink">viagens</span></h2>
+    <p class="section-sub">Substitua pelos seus melhores cliques — cada foto conta uma história.</p>
+    <div class="gallery-grid">
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#001a2e,#005577);">🏜️</div>
+        <div class="gal-overlay"><div class="gal-label">Lençóis Maranhenses 🇧🇷</div></div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#00101a,#003050);">🏖️</div>
+        <div class="gal-overlay"><div class="gal-label">Aruba 🇦🇼</div></div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#1a0800,#4a2200);">🌴</div>
+        <div class="gal-overlay"><div class="gal-label">Trancoso, Bahia 🇧🇷</div></div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#000d1a,#002040);">🌊</div>
+        <div class="gal-overlay"><div class="gal-label">Curaçao 🇨🇼</div></div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#1a0800,#503010);">🏔️</div>
+        <div class="gal-overlay"><div class="gal-label">Cusco, Peru 🇵🇪</div></div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-ph" style="background:linear-gradient(135deg,#0f001a,#300050);">🏝️</div>
+        <div class="gal-overlay"><div class="gal-label">San Andrés, Colômbia 🇨🇴</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://instagram.com/barbie.mochileira" target="_blank" class="btn-neon" style="display:inline-block;">Ver no Instagram 📸</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MIM -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-wrap">
+      <div class="sobre-img-box">
+        <div class="sobre-photo">
+          <!-- Substitua por: <img src="sua-foto.jpg" alt="Cássia - Barbie Mochileira" /> -->
+          🎒
+        </div>
+        <div class="sobre-float">
+          <strong>42+</strong>
+          <span>países visitados</span>
+        </div>
+        <div class="sobre-float2">⚖️ Advogada · ✈️ Mochileira</div>
+      </div>
+      <div class="sobre-text">
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">Sobre Mim</span>
+        </div>
+        <h2 class="section-title">Oi, eu sou a <span class="pink">Barbie Mochileira!</span></h2>
+        <div class="sobre-quote">
+          "Se você tá aqui, é porque também sente aquela coceira no pé quando fica tempo demais sem viajar." 😂✈️
+        </div>
+        <p>Desde pequena eu tinha um sonho: ser <strong style="color:#fff;">pilota de avião</strong>. Não é brincadeira — eu queria mesmo voar. O avião pra mim sempre foi símbolo de liberdade, de ir além, de conhecer o desconhecido.</p>
+        <p>A vida foi por outros caminhos — hoje sou <strong style="color:#fff;">advogada</strong>. Mas sabe o que não mudou? Aquela vontade enorme de decolar. ✈️ Na hora de escolher a faculdade, minha segunda opção era Turismo — porque eu sempre soube que viagem não era só hobby pra mim. Era vocação.</p>
+        <p>Hoje faço em média <strong style="color:#fff;">3 a 4 viagens por ano</strong>. Já me perdi em cidade estranha, paguei caro por algo que era de graça, escolhi a hospedagem errada — e descobri lugares incríveis que não estavam em nenhum roteiro. E foi aí que pensei: <em style="color:var(--pink2);">por que guardar isso só pra mim?</em></p>
+        <p>A <strong style="color:#fff;">Barbie Mochileira</strong> nasceu pra compartilhar dicas reais, perrengues reais e informações que realmente ajudam — sem filtro, sem a versão perfeita que não existe na vida real. Só a viagem do jeito que ela é, com toda a beleza e toda a bagunça. 😂🌍</p>
+        <div class="sobre-pills">
+          <span class="pill gold-pill">⚖️ Advogada Viajante</span>
+          <span class="pill">🎒 Mochilão</span>
+          <span class="pill">👜 Lifestyle</span>
+          <span class="pill">🏖️ Praias</span>
+          <span class="pill">🏔️ Montanhas</span>
+          <span class="pill">🍜 Gastronomia</span>
+          <span class="pill">📷 Fotografia</span>
+        </div>
+        <p style="color:var(--gold);font-weight:700;font-size:1rem;margin-bottom:20px;">
+          🎒 Arrasta a rodinha e vem com a Barbie!
+        </p>
+        <div class="sobre-socials">
+          <a href="https://instagram.com/barbie.mochileira" target="_blank" class="social-link ig">📸 @barbie.mochileira</a>
+          <a href="https://youtube.com/@barbiemochileira" target="_blank" class="social-link yt">▶️ YouTube</a>
+          <a href="https://tiktok.com/@barbiemochileira" target="_blank" class="social-link tt">🎵 TikTok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO / NEWSLETTER -->
+<section id="contato">
+  <div class="container">
+    <div class="contato-wrap">
+      <div>
+        <div class="section-eyebrow">
+          <div class="section-eyebrow-line"></div>
+          <span class="section-eyebrow-text">✉️ Fica por dentro</span>
+        </div>
+        <h2 class="section-title">Entra na minha lista <span class="pink">VIP!</span></h2>
+        <p class="section-sub" style="margin-bottom:30px;">Roteiros exclusivos, promoções de passagem e dicas antes de todo mundo. Sem spam — prometo! 🤞</p>
+        <div class="form-group">
+          <div class="form-row">
+            <input class="form-input" type="text" placeholder="Seu nome" id="fname" />
+            <input class="form-input" type="email" placeholder="Seu e-mail" id="femail" />
+          </div>
+          <textarea class="form-textarea" placeholder="Conta pra onde você quer viajar! ✈️" id="fmsg"></textarea>
+          <button class="btn-send" onclick="submitForm()">Quero receber! 🚀</button>
+          <div class="success-msg" id="successMsg">
+            🎉 Arrasou! Te mando novidades em breve, viajante!
+          </div>
+        </div>
+        <p style="margin-top:16px;font-size:0.82rem;color:#444;">
+          Ou escreve direto: <a href="mailto:barbiemochileira@gmail.com" style="color:var(--pink);text-decoration:none;">barbiemochileira@gmail.com</a>
+        </p>
+      </div>
+      <div class="contact-perks">
+        <div class="perk">
+          <div class="perk-icon">🗺️</div>
+          <div>
+            <div class="perk-title">Roteiros Exclusivos</div>
+            <div class="perk-desc">Conteúdo só pra quem está na lista — antes de virar post.</div>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">🏷️</div>
+          <div>
+            <div class="perk-title">Promoções de Passagem</div>
+            <div class="perk-desc">Capturo as melhores promos e mando direto no seu e-mail.</div>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">💌</div>
+          <div>
+            <div class="perk-title">Bastidores & Dicas VIP</div>
+            <div class="perk-desc">O que não vai pro vlog, vai pra lista.</div>
+          </div>
+        </div>
+        <div class="perk">
+          <div class="perk-icon">👯‍♀️</div>
+          <div>
+            <div class="perk-title">Comunidade de Viajantes</div>
+            <div class="perk-desc">Faça parte do grupo que viaja, troca dica e se inspira!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <span class="pink">Barbie</span> <span class="gold">Mochileira</span>
+  </div>
+  <p class="footer-tagline">✈️ Arrasta a rodinha e vem comigo!</p>
+  <nav class="footer-nav">
+    <a href="#pilares">Conteúdo</a>
+    <a href="#destinos">Destinos</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#sobre">Sobre Mim</a>
+    <a href="#contato">Contato</a>
+    <a href="mailto:barbiemochileira@gmail.com">✉️ E-mail</a>
+  </nav>
+  <div class="footer-socials">
+    <a href="https://instagram.com/barbie.mochileira" target="_blank" class="fsoc" title="Instagram">📸</a>
+    <a href="https://youtube.com/@barbiemochileira" target="_blank" class="fsoc" title="YouTube">▶️</a>
+    <a href="https://tiktok.com/@barbiemochileira" target="_blank" class="fsoc" title="TikTok">🎵</a>
+    <a href="mailto:barbiemochileira@gmail.com" class="fsoc" title="E-mail">✉️</a>
+  </div>
+  <p class="footer-copy">© 2025 <span>Barbie Mochileira</span> · Feito com ❤️ e muitas milhas</p>
+</footer>
+
+<script>
+  function submitForm() {
+    const name = document.getElementById('fname').value.trim();
+    const email = document.getElementById('femail').value.trim();
+    if (!name || !email) { alert('Preencha nome e e-mail 😊'); return; }
+    if (!email.includes('@')) { alert('E-mail inválido! Confere aí 👀'); return; }
+    document.getElementById('fname').value = '';
+    document.getElementById('femail').value = '';
+    document.getElementById('fmsg').value = '';
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    setTimeout(() => { msg.style.display = 'none'; }, 5000);
+  }
+
+  // Nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => {
+      const isActive = a.getAttribute('href') === `#${current}`;
+      a.style.color = isActive ? 'var(--pink)' : '';
+      a.style.textShadow = isActive ? 'var(--glow-soft)' : '';
+    });
+  });
+</script>
+</body>
+</html>

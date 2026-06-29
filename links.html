@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barbie Mochileira — Links</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Background glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,20,147,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(201,162,39,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative; z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ---- AVATAR ---- */
+    .avatar-wrap {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(255,20,147,0.2), 0 0 32px rgba(255,20,147,0.5);
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.2rem;
+      overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block; }
+    .avatar-badge {
+      display: none;
+    }
+
+    /* ---- NAME ---- */
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-style: italic;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .name .pink { color: #FF1493; text-shadow: 0 0 14px rgba(255,20,147,0.6); }
+    .name .gold { color: #C9A227; }
+
+    .handle {
+      color: #777;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      letter-spacing: 0.04em;
+    }
+
+    .tagline {
+      color: #C9A227;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+      letter-spacing: 0.03em;
+    }
+
+    .bio {
+      color: #888;
+      font-size: 0.82rem;
+      text-align: center;
+      max-width: 320px;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    /* ---- STATS ROW ---- */
+    .stats {
+      display: flex;
+      gap: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,20,147,0.2);
+      border-radius: 14px;
+      overflow: hidden;
+      width: 100%;
+      margin-bottom: 28px;
+    }
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 12px 8px;
+      border-right: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-n {
+      display: block;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #FF1493;
+      text-shadow: 0 0 10px rgba(255,20,147,0.4);
+    }
+    .stat-l {
+      display: block;
+      font-size: 0.68rem;
+      color: #666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 2px;
+    }
+
+    /* ---- LINKS ---- */
+    .links { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 22px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-btn::before {
+      content: '';
+      position: absolute; inset: 0;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .link-btn:hover { transform: translateY(-3px); }
+    .link-btn:hover::before { opacity: 1; }
+
+    .link-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+    }
+    .link-text { flex: 1; }
+    .link-label { display: block; font-size: 0.76rem; opacity: 0.55; font-weight: 600; margin-bottom: 1px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .link-main { display: block; font-size: 0.97rem; font-weight: 800; }
+    .link-arrow { opacity: 0.4; font-size: 0.9rem; transition: opacity 0.2s, transform 0.2s; }
+    .link-btn:hover .link-arrow { opacity: 1; transform: translateX(3px); }
+
+    /* Cores por plataforma */
+    .btn-ig {
+      border-color: rgba(253,29,29,0.3);
+    }
+    .btn-ig:hover {
+      border-color: #fd1d1d;
+      background: rgba(253,29,29,0.08);
+      box-shadow: 0 6px 24px rgba(253,29,29,0.2);
+    }
+    .btn-ig .link-icon { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); }
+
+    .btn-yt {
+      border-color: rgba(255,0,0,0.3);
+    }
+    .btn-yt:hover {
+      border-color: #ff0000;
+      background: rgba(255,0,0,0.08);
+      box-shadow: 0 6px 24px rgba(255,0,0,0.2);
+    }
+    .btn-yt .link-icon { background: #ff0000; }
+
+    .btn-tt {
+      border-color: rgba(105,201,208,0.3);
+    }
+    .btn-tt:hover {
+      border-color: #69C9D0;
+      background: rgba(105,201,208,0.08);
+      box-shadow: 0 6px 24px rgba(105,201,208,0.2);
+    }
+    .btn-tt .link-icon { background: #010101; border: 1px solid rgba(105,201,208,0.4); }
+
+    .btn-yt-short {
+      border-color: rgba(255,0,0,0.2);
+    }
+    .btn-yt-short:hover {
+      border-color: #ff0000;
+      background: rgba(255,0,0,0.06);
+      box-shadow: 0 6px 24px rgba(255,0,0,0.15);
+    }
+    .btn-yt-short .link-icon { background: #cc0000; }
+
+    .btn-site {
+      border-color: rgba(255,20,147,0.3);
+    }
+    .btn-site:hover {
+      border-color: #FF1493;
+      background: rgba(255,20,147,0.08);
+      box-shadow: 0 6px 24px rgba(255,20,147,0.25);
+    }
+    .btn-site .link-icon { background: rgba(255,20,147,0.2); border: 1px solid rgba(255,20,147,0.4); }
+
+    .btn-email {
+      border-color: rgba(201,162,39,0.3);
+    }
+    .btn-email:hover {
+      border-color: #C9A227;
+      background: rgba(201,162,39,0.08);
+      box-shadow: 0 6px 24px rgba(201,162,39,0.2);
+    }
+    .btn-email .link-icon { background: rgba(201,162,39,0.15); border: 1px solid rgba(201,162,39,0.4); }
+
+    .btn-newsletter {
+      background: linear-gradient(135deg, rgba(255,20,147,0.15), rgba(201,162,39,0.1));
+      border-color: rgba(255,20,147,0.5);
+    }
+    .btn-newsletter:hover {
+      border-color: #FF1493;
+      box-shadow: 0 6px 28px rgba(255,20,147,0.3);
+      background: linear-gradient(135deg, rgba(255,20,147,0.22), rgba(201,162,39,0.15));
+    }
+    .btn-newsletter .link-icon { background: rgba(255,20,147,0.2); border: 1px solid rgba(255,20,147,0.5); }
+    .btn-newsletter .link-main { color: #FF1493; }
+
+    /* ---- DIVIDER ---- */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; margin: 4px 0;
+    }
+    .divider-line { flex: 1; height: 1px; background: rgba(255,255,255,0.07); }
+    .divider-text { color: #444; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ---- FOOTER ---- */
+    .footer-bio {
+      margin-top: 28px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .footer-logo span { color: #FF1493; }
+    .footer-copy { font-size: 0.72rem; color: #2a2a2a; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- AVATAR -->
+    <div class="avatar-wrap">
+      <div class="avatar">
+        <img src="logo.png" alt="Barbie Mochileira" />
+      </div>
+      <div class="avatar-badge">✈️</div>
+    </div>
+
+    <!-- NOME -->
+    <h1 class="name">
+      <span class="pink">Barbie</span> <span class="gold">Mochileira</span>
+    </h1>
+    <p class="handle">@barbie.mochileira</p>
+    <p class="tagline">✈️ Arrasta a rodinha e vem comigo!</p>
+    <p class="bio">Advogada de dia, mochileira de sempre. Dicas reais, vlogs, perrengues e muita aventura. 🌍⚖️</p>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-item">
+        <span class="stat-n">42+</span>
+        <span class="stat-l">Países</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-n">180+</span>
+        <span class="stat-l">Vídeos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-n">50k+</span>
+        <span class="stat-l">Seguidoras</span>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="links">
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/barbie.mochileira" target="_blank" class="link-btn btn-ig">
+        <div class="link-icon">📸</div>
+        <div class="link-text">
+          <span class="link-label">Instagram</span>
+          <span class="link-main">@barbie.mochileira</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://tiktok.com/@barbiemochileira" target="_blank" class="link-btn btn-tt">
+        <div class="link-icon">🎵</div>
+        <div class="link-text">
+          <span class="link-label">TikTok</span>
+          <span class="link-main">@barbiemochileira</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://youtube.com/@barbiemochileira" target="_blank" class="link-btn btn-yt">
+        <div class="link-icon">▶️</div>
+        <div class="link-text">
+          <span class="link-label">YouTube</span>
+          <span class="link-main">Barbie Mochileira</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- YouTube Shorts -->
+      <a href="https://youtube.com/@barbiemochileira/shorts" target="_blank" class="link-btn btn-yt-short">
+        <div class="link-icon">📱</div>
+        <div class="link-text">
+          <span class="link-label">YouTube Shorts</span>
+          <span class="link-main">Viagens em 60 segundos</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <div class="divider">
+        <div class="divider-line"></div>
+        <span class="divider-text">mais</span>
+        <div class="divider-line"></div>
+      </div>
+
+      <!-- Site/Blog -->
+      <a href="https://barbiemochileira.com.br" target="_blank" class="link-btn btn-site">
+        <div class="link-icon">🌍</div>
+        <div class="link-text">
+          <span class="link-label">Blog & Site</span>
+          <span class="link-main">barbiemochileira.com.br</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Newsletter / Lista VIP -->
+      <a href="https://barbiemochileira.com.br#contato" target="_blank" class="link-btn btn-newsletter">
+        <div class="link-icon">💌</div>
+        <div class="link-text">
+          <span class="link-label">Lista VIP — Grátis!</span>
+          <span class="link-main">Roteiros exclusivos + promos</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- E-mail para parcerias -->
+      <a href="mailto:barbiemochileira@gmail.com" class="link-btn btn-email">
+        <div class="link-icon">✉️</div>
+        <div class="link-text">
+          <span class="link-label">Parcerias & Contato</span>
+          <span class="link-main">barbiemochileira@gmail.com</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-bio">
+      <p class="footer-logo"><span>Barbie</span> Mochileira</p>
+      <p class="footer-copy">© 2025 · Feito com ❤️ e muitas milhas</p>
+    </div>
+
+  </div>
+</body>
+</html>
